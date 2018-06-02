@@ -1,0 +1,606 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20181.18.0510.1418                               -->
+<workbook source-build='2018.1.1 (20181.18.0510.1418)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <SortTagCleanup />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='commit (gitwork)' inline='true' name='federated.10bhyks0u8gvti1ffqnx804qv2fa' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='localhost' name='mysql.0vw7m3v0yisdfd1a72a0y06o2q28'>
+            <connection class='mysql' dbname='gitwork' odbc-native-protocol='' one-time-sql='' port='3306' server='localhost' source-charset='' username='giter' />
+          </named-connection>
+        </named-connections>
+        <relation connection='mysql.0vw7m3v0yisdfd1a72a0y06o2q28' name='commit' table='[commit]' type='table' />
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>Id</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[Id]</local-name>
+            <parent-name>[commit]</parent-name>
+            <remote-alias>Id</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>hash</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[hash]</local-name>
+            <parent-name>[commit]</parent-name>
+            <remote-alias>hash</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>40</width>
+            <contains-null>false</contains-null>
+            <padded-semantics>true</padded-semantics>
+            <collation flag='0' name='LROOT' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>user</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[user]</local-name>
+            <parent-name>[commit]</parent-name>
+            <remote-alias>user</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>20</width>
+            <contains-null>false</contains-null>
+            <padded-semantics>true</padded-semantics>
+            <collation flag='0' name='LROOT' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>email</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[email]</local-name>
+            <parent-name>[commit]</parent-name>
+            <remote-alias>email</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>45</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LROOT' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>commit_date</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[commit_date]</local-name>
+            <parent-name>[commit]</parent-name>
+            <remote-alias>commit_date</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>datetime</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_TYPE_TIMESTAMP&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_TYPE_TIMESTAMP&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>insert</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[insert]</local-name>
+            <parent-name>[commit]</parent-name>
+            <remote-alias>insert</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>delete</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[delete]</local-name>
+            <parent-name>[commit]</parent-name>
+            <remote-alias>delete</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>files</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[files]</local-name>
+            <parent-name>[commit]</parent-name>
+            <remote-alias>files</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>repository</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[repository]</local-name>
+            <parent-name>[commit]</parent-name>
+            <remote-alias>repository</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>45</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LROOT' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='changes' datatype='integer' name='[Calculation_97108871993495552]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='[insert] + [delete]' />
+      </column>
+      <column datatype='string' name='[Engineer (group)]' role='dimension' type='nominal'>
+        <calculation class='categorical-bin' column='[user]' new-bin='true'>
+          <bin default-name='false' value='&quot;Bing.Liu&quot;'>
+            <value>&quot;bing.liu&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Chaoyao.Zhang&quot;'>
+            <value>&quot;zhangchaoyao&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Gaoyong.Qian&quot;'>
+            <value>&quot;jqian&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Guoxing.Chen&quot;'>
+            <value>&quot;guoxing&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Haiwen.Ji&quot;'>
+            <value>&quot;haiwen mac&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Han.Zhao&quot;'>
+            <value>&quot;zhaohan&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Hanquan.Lin&quot;'>
+            <value>&quot;linhq&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Jichao.Yang&quot;'>
+            <value>&quot;yangjichao&quot;</value>
+            <value>&quot;超&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Jinhe.Hu&quot;'>
+            <value>&quot;hujinhe&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Liangliang.Tong&quot;'>
+            <value>&quot;tongll&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Lin.Li&quot;'>
+            <value>&quot;lilin&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Maowen.Fan&quot;'>
+            <value>&quot;fanmaowen&quot;</value>
+            <value>&quot;Maowen Fan 范茂文&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Mengli.Yang&quot;'>
+            <value>&quot;yangmengli&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Mingzhen.Yang&quot;'>
+            <value>&quot;mingzhen_yang&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Qiang.Li&quot;'>
+            <value>&quot;qiang.li&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Quan.Zhou&quot;'>
+            <value>&quot;zhouquan&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Shelong.Zhao&quot;'>
+            <value>&quot;zsl&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Weijie.Wang&quot;'>
+            <value>&quot;wangweijie&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Wenqiang.Zhang&quot;'>
+            <value>&quot;zhangwenqiang&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Wolong.Jiang&quot;'>
+            <value>&quot;jiangwolong2016&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Xiaoqian.Zhou&quot;'>
+            <value>&quot;zhouxiaoqian&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Xiaoxi.Zhang&quot;'>
+            <value>&quot;Xiaoxi Zhang 张晓西&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Xingye.Zhang&quot;'>
+            <value>&quot;xingye.zhang&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Xu.Tian&quot;'>
+            <value>&quot;tianxu&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Yanchang.Zhang&quot;'>
+            <value>&quot;yanchang.zhang&quot;</value>
+            <value>&quot;zhangyanchang&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Yang.Liu&quot;'>
+            <value>&quot;liuyang&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Yi.Liu&quot;'>
+            <value>&quot;liuyi&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Yongjian.Chen&quot;'>
+            <value>&quot;chenyongjian&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Yongqi.Guo&quot;'>
+            <value>&quot;Yongqi Guo 郭永奇&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Zeng.Luo&quot;'>
+            <value>&quot;luozeng&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Zhiming.Hu&quot;'>
+            <value>&quot;Remi&quot;</value>
+          </bin>
+        </calculation>
+      </column>
+      <column datatype='integer' name='[Id]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column caption='project' datatype='string' name='[repository]' role='dimension' type='nominal' />
+      <column caption='Engineer' datatype='string' name='[user]' role='dimension' type='nominal'>
+        <aliases>
+          <alias key='&quot;chenyongjian&quot;' value='Yongjian.Chen' />
+          <alias key='&quot;fanmaowen&quot;' value='Maowen.Fan' />
+          <alias key='&quot;haiwen mac&quot;' value='Haiwen.Ji' />
+          <alias key='&quot;jiangwolong2016&quot;' value='Wolong.Jiang' />
+          <alias key='&quot;lilin&quot;' value='Lin.Li' />
+          <alias key='&quot;linhq&quot;' value='Hanquan.Lin' />
+          <alias key='&quot;liuyang&quot;' value='Yang.Liu' />
+          <alias key='&quot;liuyi&quot;' value='Yi.Liu' />
+          <alias key='&quot;luozeng&quot;' value='Zeng.Luo' />
+          <alias key='&quot;qiang.li&quot;' value='Qiang.Li' />
+          <alias key='&quot;Remi&quot;' value='Zhiming.Hu' />
+          <alias key='&quot;tianxu&quot;' value='Xu.Tian' />
+          <alias key='&quot;yanchang.zhang&quot;' value='Yanchang.Zhang' />
+          <alias key='&quot;yangmengli&quot;' value='Mengli.Yang' />
+          <alias key='&quot;zhangwenqiang&quot;' value='Wenqiang.Zhang' />
+          <alias key='&quot;zhouquan&quot;' value='Quan.Zhou' />
+          <alias key='&quot;zsl&quot;' value='Shelong.Zhao' />
+        </aliases>
+      </column>
+      <column-instance column='[repository]' derivation='None' name='[none:repository:nk]' pivot='key' type='nominal' />
+      <column-instance column='[user]' derivation='None' name='[none:user:nk]' pivot='key' type='nominal' />
+      <group hidden='true' name='[Exclusions (Engineer,project)]' name-style='unqualified' user:auto-column='exclude'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[none:user:nk]' />
+          <groupfilter function='level-members' level='[none:repository:nk]' />
+        </groupfilter>
+      </group>
+      <layout dim-ordering='alphabetic' dim-percentage='0.510078' measure-ordering='alphabetic' measure-percentage='0.489922' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[none:repository:nk]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;bnq_owner_ios&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;s2b&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;future_store&quot;</bucket>
+            </map>
+            <map to='#b07aa1'>
+              <bucket>&quot;zt_1&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;mall-root&quot;</bucket>
+            </map>
+            <map to='#edc948'>
+              <bucket>&quot;wz&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;bnq_root&quot;</bucket>
+            </map>
+            <map to='#ff9da7'>
+              <bucket>&quot;zt_2&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;China&quot;' />
+      </semantic-values>
+      <field-sort-info field-sort-order-type='custom-order'>
+        <field-sort-custom-order field='Id' />
+        <field-sort-custom-order field='hash' />
+        <field-sort-custom-order field='user' />
+        <field-sort-custom-order field='email' />
+        <field-sort-custom-order field='commit_date' />
+        <field-sort-custom-order field='insert' />
+        <field-sort-custom-order field='Calculation_97108871993495552' />
+        <field-sort-custom-order field='delete' />
+        <field-sort-custom-order field='files' />
+        <field-sort-custom-order field='repository' />
+      </field-sort-info>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='git_contribution'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Git Contribution</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='commit (gitwork)' name='federated.10bhyks0u8gvti1ffqnx804qv2fa' />
+          </datasources>
+          <datasource-dependencies datasource='federated.10bhyks0u8gvti1ffqnx804qv2fa'>
+            <column caption='changes' datatype='integer' name='[Calculation_97108871993495552]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[insert] + [delete]' />
+            </column>
+            <column datatype='string' name='[Engineer (group)]' role='dimension' type='nominal'>
+              <calculation class='categorical-bin' column='[user]' new-bin='true'>
+                <bin default-name='false' value='&quot;Bing.Liu&quot;'>
+                  <value>&quot;bing.liu&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Chaoyao.Zhang&quot;'>
+                  <value>&quot;zhangchaoyao&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Gaoyong.Qian&quot;'>
+                  <value>&quot;jqian&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Guoxing.Chen&quot;'>
+                  <value>&quot;guoxing&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Haiwen.Ji&quot;'>
+                  <value>&quot;haiwen mac&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Han.Zhao&quot;'>
+                  <value>&quot;zhaohan&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Hanquan.Lin&quot;'>
+                  <value>&quot;linhq&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Jichao.Yang&quot;'>
+                  <value>&quot;yangjichao&quot;</value>
+                  <value>&quot;超&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Jinhe.Hu&quot;'>
+                  <value>&quot;hujinhe&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Liangliang.Tong&quot;'>
+                  <value>&quot;tongll&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Lin.Li&quot;'>
+                  <value>&quot;lilin&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Maowen.Fan&quot;'>
+                  <value>&quot;fanmaowen&quot;</value>
+                  <value>&quot;Maowen Fan 范茂文&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Mengli.Yang&quot;'>
+                  <value>&quot;yangmengli&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Mingzhen.Yang&quot;'>
+                  <value>&quot;mingzhen_yang&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Qiang.Li&quot;'>
+                  <value>&quot;qiang.li&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Quan.Zhou&quot;'>
+                  <value>&quot;zhouquan&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Shelong.Zhao&quot;'>
+                  <value>&quot;zsl&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Weijie.Wang&quot;'>
+                  <value>&quot;wangweijie&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Wenqiang.Zhang&quot;'>
+                  <value>&quot;zhangwenqiang&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Wolong.Jiang&quot;'>
+                  <value>&quot;jiangwolong2016&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Xiaoqian.Zhou&quot;'>
+                  <value>&quot;zhouxiaoqian&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Xiaoxi.Zhang&quot;'>
+                  <value>&quot;Xiaoxi Zhang 张晓西&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Xingye.Zhang&quot;'>
+                  <value>&quot;xingye.zhang&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Xu.Tian&quot;'>
+                  <value>&quot;tianxu&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Yanchang.Zhang&quot;'>
+                  <value>&quot;yanchang.zhang&quot;</value>
+                  <value>&quot;zhangyanchang&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Yang.Liu&quot;'>
+                  <value>&quot;liuyang&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Yi.Liu&quot;'>
+                  <value>&quot;liuyi&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Yongjian.Chen&quot;'>
+                  <value>&quot;chenyongjian&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Yongqi.Guo&quot;'>
+                  <value>&quot;Yongqi Guo 郭永奇&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Zeng.Luo&quot;'>
+                  <value>&quot;luozeng&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Zhiming.Hu&quot;'>
+                  <value>&quot;Remi&quot;</value>
+                </bin>
+              </calculation>
+            </column>
+            <column datatype='datetime' name='[commit_date]' role='dimension' type='ordinal' />
+            <column datatype='integer' name='[delete]' role='measure' type='quantitative' />
+            <column datatype='integer' name='[insert]' role='measure' type='quantitative' />
+            <column-instance column='[commit_date]' derivation='Month' name='[mn:commit_date:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[repository]' derivation='None' name='[none:repository:nk]' pivot='key' type='nominal' />
+            <column-instance column='[user]' derivation='None' name='[none:user:nk]' pivot='key' type='nominal' />
+            <column caption='project' datatype='string' name='[repository]' role='dimension' type='nominal' />
+            <column-instance column='[Calculation_97108871993495552]' derivation='Sum' name='[sum:Calculation_97108871993495552:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[commit_date]' derivation='Month-Trunc' name='[tmn:commit_date:qk]' pivot='key' type='quantitative' />
+            <column caption='Engineer' datatype='string' name='[user]' role='dimension' type='nominal'>
+              <aliases>
+                <alias key='&quot;chenyongjian&quot;' value='Yongjian.Chen' />
+                <alias key='&quot;fanmaowen&quot;' value='Maowen.Fan' />
+                <alias key='&quot;haiwen mac&quot;' value='Haiwen.Ji' />
+                <alias key='&quot;jiangwolong2016&quot;' value='Wolong.Jiang' />
+                <alias key='&quot;lilin&quot;' value='Lin.Li' />
+                <alias key='&quot;linhq&quot;' value='Hanquan.Lin' />
+                <alias key='&quot;liuyang&quot;' value='Yang.Liu' />
+                <alias key='&quot;liuyi&quot;' value='Yi.Liu' />
+                <alias key='&quot;luozeng&quot;' value='Zeng.Luo' />
+                <alias key='&quot;qiang.li&quot;' value='Qiang.Li' />
+                <alias key='&quot;Remi&quot;' value='Zhiming.Hu' />
+                <alias key='&quot;tianxu&quot;' value='Xu.Tian' />
+                <alias key='&quot;yanchang.zhang&quot;' value='Yanchang.Zhang' />
+                <alias key='&quot;yangmengli&quot;' value='Mengli.Yang' />
+                <alias key='&quot;zhangwenqiang&quot;' value='Wenqiang.Zhang' />
+                <alias key='&quot;zhouquan&quot;' value='Quan.Zhou' />
+                <alias key='&quot;zsl&quot;' value='Shelong.Zhao' />
+              </aliases>
+            </column>
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.10bhyks0u8gvti1ffqnx804qv2fa].[Engineer (group)]'>
+            <groupfilter function='except' user:ui-domain='relevant' user:ui-enumeration='exclusive' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Engineer (group)]' />
+              <groupfilter function='member' level='[Engineer (group)]' member='&quot;weiqing.lv&quot;' />
+            </groupfilter>
+          </filter>
+          <computed-sort column='[federated.10bhyks0u8gvti1ffqnx804qv2fa].[Engineer (group)]' direction='DESC' using='[federated.10bhyks0u8gvti1ffqnx804qv2fa].[sum:Calculation_97108871993495552:qk]' />
+          <filter class='categorical' column='[federated.10bhyks0u8gvti1ffqnx804qv2fa].[mn:commit_date:ok]'>
+            <groupfilter function='union' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[mn:commit_date:ok]' member='3' />
+              <groupfilter function='member' level='[mn:commit_date:ok]' member='4' />
+              <groupfilter function='member' level='[mn:commit_date:ok]' member='5' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.10bhyks0u8gvti1ffqnx804qv2fa].[none:user:nk]'>
+            <groupfilter function='except' user:ui-domain='relevant' user:ui-enumeration='exclusive' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[none:user:nk]' />
+              <groupfilter function='union'>
+                <groupfilter function='member' level='[none:user:nk]' member='&quot;_wwj&quot;' />
+                <groupfilter function='member' level='[none:user:nk]' member='&quot;bnqboy&quot;' />
+                <groupfilter function='member' level='[none:user:nk]' member='&quot;muweixiafang@163.com&quot;' />
+                <groupfilter function='member' level='[none:user:nk]' member='&quot;user&quot;' />
+                <groupfilter function='member' level='[none:user:nk]' member='&quot;wenqiang&quot;' />
+                <groupfilter function='member' level='[none:user:nk]' member='&quot;win7&quot;' />
+                <groupfilter function='member' level='[none:user:nk]' member='&quot;wwj&quot;' />
+                <groupfilter function='member' level='[none:user:nk]' member='&quot;张兴晔&quot;' />
+              </groupfilter>
+            </groupfilter>
+          </filter>
+          <filter class='quantitative' column='[federated.10bhyks0u8gvti1ffqnx804qv2fa].[tmn:commit_date:qk]' included-values='in-range'>
+            <min>#2018-01-01 00:00:00#</min>
+            <max>#2018-06-01 00:00:00#</max>
+          </filter>
+          <slices>
+            <column>[federated.10bhyks0u8gvti1ffqnx804qv2fa].[tmn:commit_date:qk]</column>
+            <column>[federated.10bhyks0u8gvti1ffqnx804qv2fa].[mn:commit_date:ok]</column>
+            <column>[federated.10bhyks0u8gvti1ffqnx804qv2fa].[none:user:nk]</column>
+            <column>[federated.10bhyks0u8gvti1ffqnx804qv2fa].[Engineer (group)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='quick-filter'>
+            <format attr='title' field='[federated.10bhyks0u8gvti1ffqnx804qv2fa].[mn:commit_date:ok]' value='MONTH(commit_date)'>
+              <formatted-text>
+                <run>MONTH(commit_date)</run>
+              </formatted-text>
+            </format>
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='3' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.10bhyks0u8gvti1ffqnx804qv2fa].[none:repository:nk]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[federated.10bhyks0u8gvti1ffqnx804qv2fa].[Engineer (group)]</rows>
+        <cols>[federated.10bhyks0u8gvti1ffqnx804qv2fa].[sum:Calculation_97108871993495552:qk]</cols>
+      </table>
+    </worksheet>
+  </worksheets>
+  <windows saved-dpi-scale-factor='1.5' source-height='44'>
+    <window class='worksheet' maximized='true' name='git_contribution'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.10bhyks0u8gvti1ffqnx804qv2fa].[mn:commit_date:ok]' type='filter' />
+            <card pane-specification-id='3' param='[federated.10bhyks0u8gvti1ffqnx804qv2fa].[none:repository:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+    </window>
+  </windows>
+</workbook>

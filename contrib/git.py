@@ -6,18 +6,24 @@ import pymysql
 from tqdm import tqdm
 
 
-Repositories = {
-    'mall-root': 'C:\\Users\\geesi\\Desktop\\BQ\\mall-root',
-    'bnq_root': 'C:\\Users\\geesi\\Desktop\\BQ\\bnq_root',
-    'bnq_owner_ios': 'C:\\Users\\geesi\\Desktop\\BQ\\bnq_owner_ios',
-}
+#Repositories = {
+#    'mall-root': 'C:\\Users\\geesi\\Desktop\\BQ\\mall-root',
+#    'bnq_root': 'C:\\Users\\geesi\\Desktop\\BQ\\bnq_root',
+#    'bnq_owner_ios': 'C:\\Users\\geesi\\Desktop\\BQ\\bnq_owner_ios',
+#}
 
 """parsing and configuration"""
 def parse_args():
     desc = "Retrieve commits from git"
     parser = argparse.ArgumentParser(description=desc)
+    parser.add_argument('--git_base_path', type=str, default='C:\\Users\\geesi\\Desktop\\BQ',
+                        help='Git base path')
 
     return parser.parse_args()
+
+def git_sync(git_path):
+    os.chdir(git_path)
+    subprocess.run(['git', 'pull'])
 
 def get_git_commits(git_path):
     os.chdir(git_path)
@@ -42,8 +48,16 @@ def insert_commit(dbcon, commit, changes):
         
         dbcon.commit()
 
+def write_log(dbcon, project_id, commit_processed, last_hash):
+    with dbcon.cursor() as cursor:
+        log_sql = "INSERT INTO log (`project_id`, `commit_processed`, `last_hash`) VALUES (%s, %s, %s)"
+        cursor.execute(log_sql, (project_id, commit_processed,last_hash))
+
 def parse_commit_line(commit_line, summary):
     summary[0:4] = commit_line.strip('"').split(',')
+    summary[0] = summary[0][:40]
+    summary[1] = summary[1][:20]
+    summary[2] = summary[1][:40]
     summary[3] = datetime.fromtimestamp(int(summary[3]))
     summary[4:7] = [0, 0, 0]
 
@@ -83,15 +97,32 @@ def write_commit(dbcon, commit_lines, repository_name):
         insert_commit(dbcon, commit_summary, changes)
         commit_num += 1
     
-    return commit_num
+    return (commit_num, commit_summary[0])
+
+def get_respositories(dbcon):
+    with dbcon.cursor() as cursor:
+        query_sql = "SELECT `id`, `name`, `repository_name` from project order by `name`"
+        cursor.execute(query_sql)
+        rows = cursor.fetchall()
+    
+    return rows
 
 def main(args):
     dbcon = pymysql.connect(host="localhost", user="giter", passwd="giter=01", db="gitwork", charset="utf8")
+    repositories = get_respositories(dbcon)
 
-    for repository_name,git_path in Repositories.items():
-        print('Processing %s'%repository_name)
+    for project_id, project_name,repository_name in repositories:
+        print('Processing %s/%s'%(project_name, repository_name))
+        git_path = os.path.join(args.git_base_path, project_name, repository_name)
+        
+        print('Syncronizing %s...'%(git_path))
+        git_sync(git_path)
+        
+        print('Analyzing git log')
         commits = get_git_commits(git_path)
-        n = write_commit(dbcon, commits, repository_name)
+        n, last_hash = write_commit(dbcon, commits, project_name)
+
+        write_log(dbcon, project_id, n, last_hash)
         print('Total %d commits processed'%n)
     
     dbcon.close()
