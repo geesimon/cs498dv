@@ -36,33 +36,37 @@ def get_git_commits(git_path):
 
 def insert_commit(dbcon, commit, changes):
     with dbcon.cursor() as cursor:
-        commit_sql = "INSERT INTO commit (`hash`, `user`, `email`, `commit_date`, `insert`, `delete`, `files`, `repository`)\
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
-        changes_sql = "INSERT INTO file_changes (`commit_id`, `insert`, `delete`, `file_name`)\
-        VALUES (%s, %s, %s, %s)"
+        #Use Ignore to ignore same commit to be counted multiple times
+        commit_sql = "INSERT IGNORE INTO commit (`hash`, `user`, `email`, `commit_date`, \
+                    `insert`, `delete`, `files`, `project_name`, `repository_id`) \
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+        changes_sql = "INSERT INTO file_changes (`commit_id`, `insert`, `delete`, `file_name`) \
+                        VALUES (%s, %s, %s, %s)"
         
-        cursor.execute(commit_sql, commit)
-        
-        change_values = [[cursor.lastrowid] + c for c in changes]
-        cursor.executemany(changes_sql, change_values)
+        if(cursor.execute(commit_sql, commit) > 0):
+            change_values = [[cursor.lastrowid] + c for c in changes]
+            cursor.executemany(changes_sql, change_values)
         
         dbcon.commit()
 
-def write_log(dbcon, project_id, commit_processed, last_hash):
+def write_log(dbcon, project_id, commit_processed, last_hash, last_date):
     with dbcon.cursor() as cursor:
-        log_sql = "INSERT INTO log (`project_id`, `commit_processed`, `last_hash`) VALUES (%s, %s, %s)"
-        cursor.execute(log_sql, (project_id, commit_processed,last_hash))
+        log_sql = "INSERT INTO log (`project_id`, `commit_processed`, `last_hash`, `last_date`) VALUES (%s, %s, %s, %s)"
+        cursor.execute(log_sql, (project_id, commit_processed,last_hash, last_date))
 
-def parse_commit_line(commit_line, summary):
+def parse_commit_line(commit_line, summary, project_name, repository_id):
     summary[0:4] = commit_line.strip('"').split(',')
     summary[0] = summary[0][:40]
     summary[1] = summary[1][:20]
     summary[2] = summary[1][:40]
     summary[3] = datetime.fromtimestamp(int(summary[3]))
     summary[4:7] = [0, 0, 0]
+    summary[7] = project_name
+    summary[8] = repository_id
 
-def write_commit(dbcon, commit_lines, repository_name):
-    commit_summary = [i for i in range(8)]
+
+def write_commit(dbcon, commit_lines, project_name, repository_id):
+    commit_summary = [i for i in range(9)]
     changes = []
     commit_num = 0
     in_analyzing_changes = False
@@ -75,7 +79,7 @@ def write_commit(dbcon, commit_lines, repository_name):
                 in_analyzing_changes = False
         else:
             if not in_analyzing_changes:
-                parse_commit_line(line, commit_summary)
+                parse_commit_line(line, commit_summary, project_name, repository_id)
                 in_analyzing_changes = True
                 changes = []
             else:
@@ -86,22 +90,21 @@ def write_commit(dbcon, commit_lines, repository_name):
                     commit_summary[4] += c[0]
                     commit_summary[5] += c[0]
                     commit_summary[6] += 1
-                    commit_summary[7] = repository_name
                     changes.append(c)
                 else:  #In case the previous commit log has no change
                     insert_commit(dbcon, commit_summary, changes)
                     commit_num += 1
-                    parse_commit_line(line, commit_summary)
+                    parse_commit_line(line, commit_summary, project_name, repository_id)
             
     if in_analyzing_changes:
         insert_commit(dbcon, commit_summary, changes)
         commit_num += 1
     
-    return (commit_num, commit_summary[0])
+    return (commit_num, commit_summary[0], commit_summary[3])
 
 def get_respositories(dbcon):
     with dbcon.cursor() as cursor:
-        query_sql = "SELECT `id`, `name`, `repository_name` from project order by `name`"
+        query_sql = "SELECT `id`, `project_name`, `repository_name` from repository order by `project_name`"
         cursor.execute(query_sql)
         rows = cursor.fetchall()
     
@@ -111,7 +114,7 @@ def main(args):
     dbcon = pymysql.connect(host="localhost", user="giter", passwd="giter=01", db="gitwork", charset="utf8")
     repositories = get_respositories(dbcon)
 
-    for project_id, project_name,repository_name in repositories:
+    for project_id, project_name, repository_name in repositories:
         print('Processing %s/%s'%(project_name, repository_name))
         git_path = os.path.join(args.git_base_path, project_name, repository_name)
         
@@ -120,9 +123,9 @@ def main(args):
         
         print('Analyzing git log')
         commits = get_git_commits(git_path)
-        n, last_hash = write_commit(dbcon, commits, project_name)
+        n, last_hash, last_date = write_commit(dbcon, commits, project_name, project_id)
 
-        write_log(dbcon, project_id, n, last_hash)
+        write_log(dbcon, project_id, n, last_hash, last_date)
         print('Total %d commits processed'%n)
     
     dbcon.close()

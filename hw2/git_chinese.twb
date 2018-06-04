@@ -1,0 +1,850 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20181.18.0510.1418                               -->
+<workbook original-version='18.1' source-build='2018.1.1 (20181.18.0510.1418)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <SortTagCleanup />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='commit (gitwork)' inline='true' name='federated.10bhyks0u8gvti1ffqnx804qv2fa' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='localhost' name='mysql.0vw7m3v0yisdfd1a72a0y06o2q28'>
+            <connection class='mysql' dbname='gitwork' odbc-native-protocol='' one-time-sql='' port='3306' server='localhost' source-charset='' username='giter' />
+          </named-connection>
+        </named-connections>
+        <relation connection='mysql.0vw7m3v0yisdfd1a72a0y06o2q28' name='commit' table='[commit]' type='table' />
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>Id</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[Id]</local-name>
+            <parent-name>[commit]</parent-name>
+            <remote-alias>Id</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>hash</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[hash]</local-name>
+            <parent-name>[commit]</parent-name>
+            <remote-alias>hash</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>40</width>
+            <contains-null>false</contains-null>
+            <padded-semantics>true</padded-semantics>
+            <collation flag='0' name='LROOT' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>user</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[user]</local-name>
+            <parent-name>[commit]</parent-name>
+            <remote-alias>user</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>20</width>
+            <contains-null>false</contains-null>
+            <padded-semantics>true</padded-semantics>
+            <collation flag='0' name='LROOT' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>email</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[email]</local-name>
+            <parent-name>[commit]</parent-name>
+            <remote-alias>email</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>45</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LROOT' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>commit_date</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[commit_date]</local-name>
+            <parent-name>[commit]</parent-name>
+            <remote-alias>commit_date</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>datetime</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_TYPE_TIMESTAMP&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_TYPE_TIMESTAMP&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>insert</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[insert]</local-name>
+            <parent-name>[commit]</parent-name>
+            <remote-alias>insert</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>delete</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[delete]</local-name>
+            <parent-name>[commit]</parent-name>
+            <remote-alias>delete</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>files</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[files]</local-name>
+            <parent-name>[commit]</parent-name>
+            <remote-alias>files</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>repository</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[repository]</local-name>
+            <parent-name>[commit]</parent-name>
+            <remote-alias>repository</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>45</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LROOT' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='changes' datatype='integer' name='[Calculation_97108871993495552]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='[insert] + [delete]' />
+      </column>
+      <column datatype='string' name='[Engineer (group)]' role='dimension' type='nominal'>
+        <calculation class='categorical-bin' column='[user]' new-bin='true'>
+          <bin default-name='false' value='&quot;Jichao.Yang&quot;'>
+            <value>&quot;yangjichao&quot;</value>
+            <value>&quot;超&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Xingye.Zhang&quot;'>
+            <value>&quot;xingye.zhang&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;Yi.Liu&quot;'>
+            <value>&quot;liuyi&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;刘冰&quot;'>
+            <value>&quot;bing.liu&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;刘阳&quot;'>
+            <value>&quot;liuyang&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;周全&quot;'>
+            <value>&quot;zhouquan&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;周小倩&quot;'>
+            <value>&quot;zhouxiaoqian&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;姜卧龙&quot;'>
+            <value>&quot;jiangwolong2016&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;季海文&quot;'>
+            <value>&quot;haiwen mac&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;张延昌&quot;'>
+            <value>&quot;yanchang.zhang&quot;</value>
+            <value>&quot;zhangyanchang&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;张文强&quot;'>
+            <value>&quot;zhangwenqiang&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;张晓西&quot;'>
+            <value>&quot;Xiaoxi Zhang 张晓西&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;张超耀&quot;'>
+            <value>&quot;zhangchaoyao&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;李林&quot;'>
+            <value>&quot;lilin&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;杨明振&quot;'>
+            <value>&quot;mingzhen_yang&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;杨梦丽&quot;'>
+            <value>&quot;yangmengli&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;林汉权&quot;'>
+            <value>&quot;linhq&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;王伟杰&quot;'>
+            <value>&quot;wangweijie&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;王金良&quot;'>
+            <value>&quot;Jinliang Wang 王金良&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;田旭&quot;'>
+            <value>&quot;tianxu&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;程林&quot;'>
+            <value>&quot;程林&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;童亮亮&quot;'>
+            <value>&quot;tongll&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;罗增&quot;'>
+            <value>&quot;luozeng&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;胡志明&quot;'>
+            <value>&quot;Remi&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;胡锦贺&quot;'>
+            <value>&quot;hujinhe&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;范茂文&quot;'>
+            <value>&quot;fanmaowen&quot;</value>
+            <value>&quot;Maowen Fan 范茂文&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;赵晗&quot;'>
+            <value>&quot;zhaohan&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;赵社龙&quot;'>
+            <value>&quot;zsl&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;郭永奇&quot;'>
+            <value>&quot;Yongqi Guo 郭永奇&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;钱高勇&quot;'>
+            <value>&quot;jqian&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;陈国兴&quot;'>
+            <value>&quot;guoxing&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;陈永健&quot;'>
+            <value>&quot;chenyongjian&quot;</value>
+          </bin>
+          <bin default-name='false' value='&quot;黎强&quot;'>
+            <value>&quot;qiang.li&quot;</value>
+          </bin>
+        </calculation>
+      </column>
+      <column datatype='integer' name='[Id]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column caption='project' datatype='string' name='[repository]' role='dimension' type='nominal' />
+      <column caption='Engineer' datatype='string' name='[user]' role='dimension' type='nominal'>
+        <aliases>
+          <alias key='&quot;chenyongjian&quot;' value='Yongjian.Chen' />
+          <alias key='&quot;fanmaowen&quot;' value='Maowen.Fan' />
+          <alias key='&quot;haiwen mac&quot;' value='Haiwen.Ji' />
+          <alias key='&quot;jiangwolong2016&quot;' value='Wolong.Jiang' />
+          <alias key='&quot;lilin&quot;' value='Lin.Li' />
+          <alias key='&quot;linhq&quot;' value='Hanquan.Lin' />
+          <alias key='&quot;liuyang&quot;' value='Yang.Liu' />
+          <alias key='&quot;liuyi&quot;' value='Yi.Liu' />
+          <alias key='&quot;luozeng&quot;' value='Zeng.Luo' />
+          <alias key='&quot;qiang.li&quot;' value='Qiang.Li' />
+          <alias key='&quot;Remi&quot;' value='Zhiming.Hu' />
+          <alias key='&quot;tianxu&quot;' value='Xu.Tian' />
+          <alias key='&quot;yanchang.zhang&quot;' value='Yanchang.Zhang' />
+          <alias key='&quot;yangmengli&quot;' value='Mengli.Yang' />
+          <alias key='&quot;zhangwenqiang&quot;' value='Wenqiang.Zhang' />
+          <alias key='&quot;zhouquan&quot;' value='Quan.Zhou' />
+          <alias key='&quot;zsl&quot;' value='Shelong.Zhao' />
+        </aliases>
+      </column>
+      <column-instance column='[repository]' derivation='None' name='[none:repository:nk]' pivot='key' type='nominal' />
+      <column-instance column='[user]' derivation='None' name='[none:user:nk]' pivot='key' type='nominal' />
+      <group hidden='true' name='[Exclusions (Engineer,project)]' name-style='unqualified' user:auto-column='exclude'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[none:user:nk]' />
+          <groupfilter function='level-members' level='[none:repository:nk]' />
+        </groupfilter>
+      </group>
+      <layout dim-ordering='alphabetic' dim-percentage='0.510078' measure-ordering='alphabetic' measure-percentage='0.489922' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[none:repository:nk]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;bnq_owner_ios&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;s2b&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;future_store&quot;</bucket>
+            </map>
+            <map to='#b07aa1'>
+              <bucket>&quot;zt_1&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;mall-root&quot;</bucket>
+            </map>
+            <map to='#edc948'>
+              <bucket>&quot;wz&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;bnq_root&quot;</bucket>
+            </map>
+            <map to='#ff9da7'>
+              <bucket>&quot;zt_2&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;China&quot;' />
+      </semantic-values>
+      <field-sort-info field-sort-order-type='custom-order'>
+        <field-sort-custom-order field='Id' />
+        <field-sort-custom-order field='hash' />
+        <field-sort-custom-order field='user' />
+        <field-sort-custom-order field='email' />
+        <field-sort-custom-order field='commit_date' />
+        <field-sort-custom-order field='insert' />
+        <field-sort-custom-order field='Calculation_97108871993495552' />
+        <field-sort-custom-order field='delete' />
+        <field-sort-custom-order field='files' />
+        <field-sort-custom-order field='repository' />
+      </field-sort-info>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='git_contribution'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Git Contribution</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='commit (gitwork)' name='federated.10bhyks0u8gvti1ffqnx804qv2fa' />
+          </datasources>
+          <datasource-dependencies datasource='federated.10bhyks0u8gvti1ffqnx804qv2fa'>
+            <column caption='changes' datatype='integer' name='[Calculation_97108871993495552]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='[insert] + [delete]' />
+            </column>
+            <column datatype='string' name='[Engineer (group)]' role='dimension' type='nominal'>
+              <calculation class='categorical-bin' column='[user]' new-bin='true'>
+                <bin default-name='false' value='&quot;Jichao.Yang&quot;'>
+                  <value>&quot;yangjichao&quot;</value>
+                  <value>&quot;超&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Xingye.Zhang&quot;'>
+                  <value>&quot;xingye.zhang&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;Yi.Liu&quot;'>
+                  <value>&quot;liuyi&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;刘冰&quot;'>
+                  <value>&quot;bing.liu&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;刘阳&quot;'>
+                  <value>&quot;liuyang&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;周全&quot;'>
+                  <value>&quot;zhouquan&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;周小倩&quot;'>
+                  <value>&quot;zhouxiaoqian&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;姜卧龙&quot;'>
+                  <value>&quot;jiangwolong2016&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;季海文&quot;'>
+                  <value>&quot;haiwen mac&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;张延昌&quot;'>
+                  <value>&quot;yanchang.zhang&quot;</value>
+                  <value>&quot;zhangyanchang&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;张文强&quot;'>
+                  <value>&quot;zhangwenqiang&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;张晓西&quot;'>
+                  <value>&quot;Xiaoxi Zhang 张晓西&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;张超耀&quot;'>
+                  <value>&quot;zhangchaoyao&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;李林&quot;'>
+                  <value>&quot;lilin&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;杨明振&quot;'>
+                  <value>&quot;mingzhen_yang&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;杨梦丽&quot;'>
+                  <value>&quot;yangmengli&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;林汉权&quot;'>
+                  <value>&quot;linhq&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;王伟杰&quot;'>
+                  <value>&quot;wangweijie&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;王金良&quot;'>
+                  <value>&quot;Jinliang Wang 王金良&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;田旭&quot;'>
+                  <value>&quot;tianxu&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;程林&quot;'>
+                  <value>&quot;程林&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;童亮亮&quot;'>
+                  <value>&quot;tongll&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;罗增&quot;'>
+                  <value>&quot;luozeng&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;胡志明&quot;'>
+                  <value>&quot;Remi&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;胡锦贺&quot;'>
+                  <value>&quot;hujinhe&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;范茂文&quot;'>
+                  <value>&quot;fanmaowen&quot;</value>
+                  <value>&quot;Maowen Fan 范茂文&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;赵晗&quot;'>
+                  <value>&quot;zhaohan&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;赵社龙&quot;'>
+                  <value>&quot;zsl&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;郭永奇&quot;'>
+                  <value>&quot;Yongqi Guo 郭永奇&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;钱高勇&quot;'>
+                  <value>&quot;jqian&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;陈国兴&quot;'>
+                  <value>&quot;guoxing&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;陈永健&quot;'>
+                  <value>&quot;chenyongjian&quot;</value>
+                </bin>
+                <bin default-name='false' value='&quot;黎强&quot;'>
+                  <value>&quot;qiang.li&quot;</value>
+                </bin>
+              </calculation>
+            </column>
+            <column datatype='datetime' name='[commit_date]' role='dimension' type='ordinal' />
+            <column datatype='integer' name='[delete]' role='measure' type='quantitative' />
+            <column datatype='integer' name='[insert]' role='measure' type='quantitative' />
+            <column-instance column='[commit_date]' derivation='Month' name='[mn:commit_date:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[repository]' derivation='None' name='[none:repository:nk]' pivot='key' type='nominal' />
+            <column-instance column='[user]' derivation='None' name='[none:user:nk]' pivot='key' type='nominal' />
+            <column caption='project' datatype='string' name='[repository]' role='dimension' type='nominal' />
+            <column-instance column='[Calculation_97108871993495552]' derivation='Sum' name='[sum:Calculation_97108871993495552:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[commit_date]' derivation='Month-Trunc' name='[tmn:commit_date:qk]' pivot='key' type='quantitative' />
+            <column caption='Engineer' datatype='string' name='[user]' role='dimension' type='nominal'>
+              <aliases>
+                <alias key='&quot;chenyongjian&quot;' value='Yongjian.Chen' />
+                <alias key='&quot;fanmaowen&quot;' value='Maowen.Fan' />
+                <alias key='&quot;haiwen mac&quot;' value='Haiwen.Ji' />
+                <alias key='&quot;jiangwolong2016&quot;' value='Wolong.Jiang' />
+                <alias key='&quot;lilin&quot;' value='Lin.Li' />
+                <alias key='&quot;linhq&quot;' value='Hanquan.Lin' />
+                <alias key='&quot;liuyang&quot;' value='Yang.Liu' />
+                <alias key='&quot;liuyi&quot;' value='Yi.Liu' />
+                <alias key='&quot;luozeng&quot;' value='Zeng.Luo' />
+                <alias key='&quot;qiang.li&quot;' value='Qiang.Li' />
+                <alias key='&quot;Remi&quot;' value='Zhiming.Hu' />
+                <alias key='&quot;tianxu&quot;' value='Xu.Tian' />
+                <alias key='&quot;yanchang.zhang&quot;' value='Yanchang.Zhang' />
+                <alias key='&quot;yangmengli&quot;' value='Mengli.Yang' />
+                <alias key='&quot;zhangwenqiang&quot;' value='Wenqiang.Zhang' />
+                <alias key='&quot;zhouquan&quot;' value='Quan.Zhou' />
+                <alias key='&quot;zsl&quot;' value='Shelong.Zhao' />
+              </aliases>
+            </column>
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.10bhyks0u8gvti1ffqnx804qv2fa].[Engineer (group)]'>
+            <groupfilter function='except' user:ui-domain='relevant' user:ui-enumeration='exclusive' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Engineer (group)]' />
+              <groupfilter function='member' level='[Engineer (group)]' member='&quot;weiqing.lv&quot;' />
+            </groupfilter>
+          </filter>
+          <computed-sort column='[federated.10bhyks0u8gvti1ffqnx804qv2fa].[Engineer (group)]' direction='DESC' using='[federated.10bhyks0u8gvti1ffqnx804qv2fa].[sum:Calculation_97108871993495552:qk]' />
+          <filter class='categorical' column='[federated.10bhyks0u8gvti1ffqnx804qv2fa].[mn:commit_date:ok]'>
+            <groupfilter function='union' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='member' level='[mn:commit_date:ok]' member='1' />
+              <groupfilter function='member' level='[mn:commit_date:ok]' member='2' />
+              <groupfilter function='member' level='[mn:commit_date:ok]' member='3' />
+              <groupfilter function='member' level='[mn:commit_date:ok]' member='4' />
+              <groupfilter function='member' level='[mn:commit_date:ok]' member='5' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.10bhyks0u8gvti1ffqnx804qv2fa].[none:user:nk]'>
+            <groupfilter function='except' user:ui-domain='relevant' user:ui-enumeration='exclusive' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[none:user:nk]' />
+              <groupfilter function='union'>
+                <groupfilter function='member' level='[none:user:nk]' member='&quot;_wwj&quot;' />
+                <groupfilter function='member' level='[none:user:nk]' member='&quot;bnqboy&quot;' />
+                <groupfilter function='member' level='[none:user:nk]' member='&quot;muweixiafang@163.com&quot;' />
+                <groupfilter function='member' level='[none:user:nk]' member='&quot;user&quot;' />
+                <groupfilter function='member' level='[none:user:nk]' member='&quot;wenqiang&quot;' />
+                <groupfilter function='member' level='[none:user:nk]' member='&quot;win7&quot;' />
+                <groupfilter function='member' level='[none:user:nk]' member='&quot;wwj&quot;' />
+                <groupfilter function='member' level='[none:user:nk]' member='&quot;张兴晔&quot;' />
+              </groupfilter>
+            </groupfilter>
+          </filter>
+          <filter class='quantitative' column='[federated.10bhyks0u8gvti1ffqnx804qv2fa].[tmn:commit_date:qk]' included-values='in-range'>
+            <min>#2018-01-01 00:00:00#</min>
+            <max>#2018-06-01 00:00:00#</max>
+          </filter>
+          <slices>
+            <column>[federated.10bhyks0u8gvti1ffqnx804qv2fa].[tmn:commit_date:qk]</column>
+            <column>[federated.10bhyks0u8gvti1ffqnx804qv2fa].[mn:commit_date:ok]</column>
+            <column>[federated.10bhyks0u8gvti1ffqnx804qv2fa].[none:user:nk]</column>
+            <column>[federated.10bhyks0u8gvti1ffqnx804qv2fa].[Engineer (group)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='quick-filter'>
+            <format attr='title' field='[federated.10bhyks0u8gvti1ffqnx804qv2fa].[mn:commit_date:ok]' value='MONTH(commit_date)'>
+              <formatted-text>
+                <run>MONTH(commit_date)</run>
+              </formatted-text>
+            </format>
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='3' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.10bhyks0u8gvti1ffqnx804qv2fa].[none:repository:nk]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[federated.10bhyks0u8gvti1ffqnx804qv2fa].[Engineer (group)]</rows>
+        <cols>[federated.10bhyks0u8gvti1ffqnx804qv2fa].[sum:Calculation_97108871993495552:qk]</cols>
+      </table>
+    </worksheet>
+  </worksheets>
+  <windows saved-dpi-scale-factor='1.5' source-height='44'>
+    <window class='worksheet' maximized='true' name='git_contribution'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.10bhyks0u8gvti1ffqnx804qv2fa].[mn:commit_date:ok]' type='filter' />
+            <card pane-specification-id='3' param='[federated.10bhyks0u8gvti1ffqnx804qv2fa].[none:repository:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <selection-collection>
+          <node-selection select-tuples='false'>
+            <oriented-node-reference orientation='vertical'>
+              <node-reference>
+                <fields>
+                  <field>[federated.10bhyks0u8gvti1ffqnx804qv2fa].[Engineer (group)]</field>
+                </fields>
+                <multibucket>
+                  <bucket>&quot;Haiwen.Ji&quot;</bucket>
+                </multibucket>
+              </node-reference>
+              <page-reference />
+            </oriented-node-reference>
+          </node-selection>
+        </selection-collection>
+        <highlight>
+          <color-one-way>
+            <field>[federated.10bhyks0u8gvti1ffqnx804qv2fa].[mn:commit_date:ok]</field>
+            <field>[federated.10bhyks0u8gvti1ffqnx804qv2fa].[none:repository:nk]</field>
+            <field>[federated.10bhyks0u8gvti1ffqnx804qv2fa].[none:user:nk]</field>
+            <field>[federated.10bhyks0u8gvti1ffqnx804qv2fa].[yr:commit_date:ok]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='192' name='git_contribution' width='192'>
+      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
+    </thumbnail>
+  </thumbnails>
+</workbook>
