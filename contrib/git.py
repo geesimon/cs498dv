@@ -25,7 +25,7 @@ def git_sync(git_path):
     os.chdir(git_path)
     subprocess.run(['git', 'pull'])
 
-def get_git_commits(git_path):
+def get_git_commits(git_path, last_date):
     os.chdir(git_path)
     result = subprocess.run(['git','log', 'master', 
                                 '--pretty=format:"%H,%cn,%ce,%ct"', 
@@ -110,8 +110,20 @@ def get_respositories(dbcon):
     
     return rows
 
+def get_last_date(dbcon, project_id):
+    last_date = 0
+    with dbcon.cursor() as cursor:
+        log_query = "SELECT last_date from log where project_id = %s order by last_date limit 1"
+        #log_query = "SELECT `id`, `project_name`, `repository_name` from repository order by `project_name`"
+        if cursor.execute(log_query % project_id) > 0:
+        #if cursor.execute(log_query) > 0:
+            last_date = cursor.fetchone()
+
+    return last_date
+
 def main(args):
     dbcon = pymysql.connect(host="localhost", user="giter", passwd="giter=01", db="gitwork", charset="utf8")
+    
     repositories = get_respositories(dbcon)
 
     for project_id, project_name, repository_name in repositories:
@@ -122,7 +134,9 @@ def main(args):
         git_sync(git_path)
         
         print('Analyzing git log')
-        commits = get_git_commits(git_path)
+        last_date = get_last_date(dbcon, project_id)
+
+        commits = get_git_commits(git_path, last_date)
         n, last_hash, last_date = write_commit(dbcon, commits, project_name, project_id)
 
         write_log(dbcon, project_id, n, last_hash, last_date)
