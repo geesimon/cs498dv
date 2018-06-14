@@ -6,12 +6,6 @@ import pymysql
 from tqdm import tqdm
 
 
-#Repositories = {
-#    'mall-root': 'C:\\Users\\geesi\\Desktop\\BQ\\mall-root',
-#    'bnq_root': 'C:\\Users\\geesi\\Desktop\\BQ\\bnq_root',
-#    'bnq_owner_ios': 'C:\\Users\\geesi\\Desktop\\BQ\\bnq_owner_ios',
-#}
-
 """parsing and configuration"""
 def parse_args():
     desc = "Retrieve commits from git"
@@ -27,7 +21,7 @@ def git_sync(git_path):
 
 def get_git_commits(git_path, last_date):
     cmd = ['git','log', 'master', '--pretty=format:"%H,%cn,%ce,%ct"', 
-            '--numstat', '--no-merges']
+            '--numstat', '--no-merges', '--reverse']
     if last_date:
         cmd.append('--since="%s"'%last_date.strftime('%Y-%m-%d %H:%M:%S'))
 
@@ -52,10 +46,11 @@ def insert_commit(dbcon, commit, changes):
         
         dbcon.commit()
 
-def write_log(dbcon, project_id, commit_processed, last_hash, last_date):
+def write_log(dbcon, repository_id, commit_processed, last_hash, last_date):
     with dbcon.cursor() as cursor:
-        log_sql = "INSERT INTO log (`project_id`, `commit_processed`, `last_hash`, `last_date`) VALUES (%s, %s, %s, %s)"
-        cursor.execute(log_sql, (project_id, commit_processed,last_hash, last_date))
+        log_sql = "INSERT INTO log (`repository_id`, `commit_processed`, `last_hash`, `last_date`) VALUES (%s, %s, %s, %s)"
+        cursor.execute(log_sql, (repository_id, commit_processed,last_hash, last_date))
+        dbcon.commit()
 
 def parse_commit_line(commit_line, summary, project_name, repository_id):
     summary[0:4] = commit_line.strip('"').split(',')
@@ -68,7 +63,7 @@ def parse_commit_line(commit_line, summary, project_name, repository_id):
     summary[8] = repository_id
 
 
-def write_commit(dbcon, commit_lines, project_name, repository_id):
+def write_commit(dbcon, commit_lines, project_name, repository_id, skip_first=True):
     commit_summary = [i for i in range(9)]
     changes = []
     commit_num = 0
@@ -77,8 +72,12 @@ def write_commit(dbcon, commit_lines, project_name, repository_id):
     for line in tqdm(commit_lines):
         if len(line) == 0:
             if in_analyzing_changes:
-                insert_commit(dbcon, commit_summary, changes)
-                commit_num += 1
+                if not skip_first:
+                    insert_commit(dbcon, commit_summary, changes)
+                    commit_num += 1
+                else:
+                    skip_first = False
+                
                 in_analyzing_changes = False
         else:
             if not in_analyzing_changes:
@@ -95,11 +94,15 @@ def write_commit(dbcon, commit_lines, project_name, repository_id):
                     commit_summary[6] += 1
                     changes.append(c)
                 else:  #In case the previous commit log has no change
-                    insert_commit(dbcon, commit_summary, changes)
-                    commit_num += 1
+                    if not skip_first:
+                        insert_commit(dbcon, commit_summary, changes)
+                        commit_num += 1
+                    else:
+                        skip_first = False
+
                     parse_commit_line(line, commit_summary, project_name, repository_id)
             
-    if in_analyzing_changes:
+    if in_analyzing_changes and not skip_first:        
         insert_commit(dbcon, commit_summary, changes)
         commit_num += 1
     
@@ -113,11 +116,11 @@ def get_repositories(dbcon):
     
     return rows
 
-def get_last_date(dbcon, project_id):
+def get_last_date(dbcon, repository_id):
     last_date = 0
     with dbcon.cursor() as cursor:
-        log_query = "SELECT last_date from log where project_id = %s order by last_date limit 1"
-        if cursor.execute(log_query % project_id) > 0:
+        log_query = "SELECT last_date from log where repository_id = %s order by last_date desc limit 1"
+        if cursor.execute(log_query % repository_id) > 0:
             last_date = cursor.fetchone()[0]
 
     return last_date
@@ -127,7 +130,7 @@ def main(args):
     
     repositories = get_repositories(dbcon)
 
-    for project_id, project_name, repository_name in repositories:
+    for repository_id, project_name, repository_name in repositories:
         print('Processing %s/%s'%(project_name, repository_name))
         git_path = os.path.join(args.git_base_path, project_name, repository_name)
         
@@ -135,12 +138,12 @@ def main(args):
         git_sync(git_path)
         
         print('Analyzing git log')
-        last_date = get_last_date(dbcon, project_id)
+        last_date = get_last_date(dbcon, repository_id)
 
         commits = get_git_commits(git_path, last_date)
-        n, last_hash, last_date = write_commit(dbcon, commits, project_name, project_id)
+        n, last_hash, last_date = write_commit(dbcon, commits, project_name, repository_id)
 
-        write_log(dbcon, project_id, n, last_hash, last_date)
+        write_log(dbcon, repository_id, n, last_hash, last_date)
         print('Total %d commits processed'%n)
     
     dbcon.close()
