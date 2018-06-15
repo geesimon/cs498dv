@@ -385,7 +385,7 @@
           <groupfilter function='level-members' level='[none:repository:nk]' />
         </groupfilter>
       </group>
-      <layout dim-ordering='alphabetic' dim-percentage='0.626685' measure-ordering='alphabetic' measure-percentage='0.373315' rowDisplayCount='2000' show-structure='true' user-set-layout='true' />
+      <layout dim-ordering='alphabetic' dim-percentage='0.626685' measure-ordering='alphabetic' measure-percentage='0.373315' rowDisplayCount='200000' show-structure='true' user-set-layout='true' />
       <style>
         <style-rule element='mark'>
           <encoding attr='color' field='[none:project_name:nk]' type='palette'>
@@ -1172,7 +1172,7 @@
     </dashboard>
   </dashboards>
   <windows source-height='30'>
-    <window class='worksheet' name='Overview'>
+    <window class='worksheet' maximized='true' name='Overview'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -1317,7 +1317,7 @@
         </highlight>
       </viewpoint>
     </window>
-    <window class='dashboard' maximized='true' name='GitActivities'>
+    <window class='dashboard' name='GitActivities'>
       <viewpoints>
         <viewpoint name='Engineer'>
           <highlight field='[federated.10bhyks0u8gvti1ffqnx804qv2fa].[sum:Calculation_97108871993495552:qk]' type='size'>
