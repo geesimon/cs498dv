@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<html>
+
+<body>
+
+    <div id="decoy-svg-container">
+    <svg id="decoy_viz" width="0" height="0"></svg>
+    </div>
+
+    <div id="svg-container">
+    <svg id="viz" width="720" height="405">
+        <rect width="15" height="50" x="20" y="177.5" tokenid="320" fill="steelblue "></rect>
+    </svg>
+    </div>
+
+<script>
+
+    var width = 720;
+    var height = 405;
+
+</script>
+
+<script>
+var data = 
+[
+    10,
+    5,
+    5,
+    8,
+    9,
+    3,
+    2
+]; 
+
+function updateViz(data)
+{
+    // Note that global variables width and height are already defined.
+    // There are also attributes with the names "width" and "height"
+    // which you will set, but those are different values.
+
+    // Given an array of data consisting of integers, use d3.js to do the following.
+
+    // Select the SVG element by its ID.
+    // Then use the general update pattern:
+    // Join the data to any existing rect elements.
+    // For each added element, append a rect element to the SVG.
+    // For each deleted element, remove the old rect.
+
+    // Each rect element should have the following properties
+    // set as attributes:
+    // "width" = 15
+    // "height" = 10 * the datum value
+    // "x" = index of the datum * 20
+    // "y" = (global variable height / 2.0) - (5.0 * the datum value)
+    // "tokenid" = (the datum value) * (the index of the datum) * 64
+    // "fill" of "steelblue "
+    // Note the extra space above! Sorry, this is a temporary bug.
+
+    // Don't forget to update the existing rect elements!
+    // That means you need to implement the general update pattern correctly.
+    var join = d3.select("svg#viz").selectAll("rect").data(data);
+
+    join.enter().append("rect").merge(join)
+        .attr("width", 15)
+        .attr("height", function(d){return 10 * d})
+        .attr("x", function(d, i){return i * 20})
+        .attr("y", function(d, i){return (height / 2.0) - (5.0 * d)})
+        .attr("tokenid", function(d, i){return d * i * 64})
+        .attr("fill", "steelblue ");
+    
+    join.exit().remove();
+}
+
+updateViz(data)
+</script>
+
+</body>
+
+</html>
