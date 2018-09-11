@@ -15,9 +15,16 @@ def parse_args():
 
     return parser.parse_args()
 
-def git_sync(git_path):
-    os.chdir(git_path)
-    subprocess.run(['git', 'pull'])
+def git_sync(git_base_path, project_name, repository_name, repository_url):
+    git_path = os.path.join(git_base_path, project_name, repository_name)
+
+    if not os.path.exists(git_path):
+        os.chdir(os.path.join(git_base_path, project_name))
+        subprocess.run(['git', 'clone', repository_url])
+    else:
+        os.chdir(git_path)
+        subprocess.run(['git', 'pull', repository_url])
+    
 
 def get_git_commits(git_path, last_date):
     cmd = ['git','log', 'master', '--pretty=format:"%H,%cn,%ce,%ct"', 
@@ -110,7 +117,7 @@ def write_commit(dbcon, commit_lines, project_name, repository_id, skip_first=Tr
 
 def get_repositories(dbcon):
     with dbcon.cursor() as cursor:
-        query_sql = "SELECT `id`, `project_name`, `repository_name` from repository order by `project_name`"
+        query_sql = "SELECT `id`, `project_name`, `repository_name`, `repository_url` from repository order by `project_name`"
         cursor.execute(query_sql)
         rows = cursor.fetchall()
     
@@ -130,14 +137,14 @@ def main(args):
     
     repositories = get_repositories(dbcon)
 
-    for repository_id, project_name, repository_name in repositories:
-        print('Processing %s/%s'%(project_name, repository_name))
-        git_path = os.path.join(args.git_base_path, project_name, repository_name)
+    for repository_id, project_name, repository_name, repository_url in repositories:
+        print('Processing %s/%s'%(project_name, repository_name))        
         
-        print('Syncronizing %s...'%(git_path))
-        git_sync(git_path)
+        print('Syncronizing %s:%s...'%(project_name, repository_name))
+        git_sync(args.git_base_path, project_name, repository_name, repository_url)
         
         print('Analyzing git log')
+        git_path = os.path.join(args.git_base_path, project_name, repository_name)        
         last_date = get_last_date(dbcon, repository_id)
 
         commits = get_git_commits(git_path, last_date)
